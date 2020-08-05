@@ -25,6 +25,13 @@ public enum PPMError : Swift.String {
     get
   }
 }
+public class PpmServiceFactory : TekCoreService.ServiceBuildable, TekCoreService.ServiceConfigAttachable {
+  public var config: TekCoreService.ServiceConfig?
+  required public init()
+  public func withConfig(_ config: TekCoreService.ServiceConfig)
+  public func createService() throws -> TekCoreService.AnyService
+  @objc deinit
+}
 public class PpmService : TekCoreService.BaseService<TekCoreService.APIManager>, TekServiceInterfaces.IPpmService, TekCoreService.CoreTermiService {
   public var lineConfig: TekCoreService.LineConfig
   public init(url: Foundation.URL, lineConfig: TekCoreService.LineConfig)
